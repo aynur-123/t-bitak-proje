@@ -1,0 +1,52 @@
+﻿@model WebApp.Models.KisiBilgileriViewModel
+@{
+    ViewBag.Title = "VeriGiris";
+}
+<h4>Veri Giriş Ekranı</h4>
+@using (Html.BeginForm("VeriGiris", "Home", FormMethod.Post))
+{
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Ad Soyad</label>
+        @Html.TextBoxFor(x => x.ADSOYAD, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Cinsiyet</label>
+        @Html.DropDownListFor(x => x.CINSIYET, Model.CinsiyetList, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Yaş</label>
+        @Html.TextBoxFor(x => x.YAS, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Kilo</label>
+        @Html.TextBoxFor(x => x.KILO, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Boy</label>
+        @Html.TextBoxFor(x => x.BOY, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Kan Grubu</label>
+        @Html.DropDownListFor(x => x.KANGRUBU, Model.KanGrubuList, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">İlaç</label>
+        @Html.DropDownListFor(x => x.ILAC, Model.IlacList, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Diğer İlaçlar</label>
+        @Html.DropDownListFor(x => x.DIGERILAC,Model.DigerIlacList, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Alerjileri</label>
+        @Html.DropDownListFor(x => x.ALERJILERI, Model.AlerjiList, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Yan Etkileri</label>
+        @Html.TextBoxFor(x => x.YANETKI, new { @class = "form-control" })
+    </div>
+    <input type="submit" class="btn btn-success" name="submit" value="KAYDET" />
+</form>
+}

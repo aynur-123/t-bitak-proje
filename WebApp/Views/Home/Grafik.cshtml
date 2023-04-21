@@ -1,0 +1,209 @@
+﻿@model WebApp.Models.RaporBilgileriViewModel
+@{
+    ViewBag.Title = "Grafik";
+}
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<br />
+<div class="form-group">
+    <label for="exampleFormControlSelect2">İlaç</label>
+    @Html.DropDownListFor(x => x.ILAC, Model.IlacList, new { @class = "form-control", @onchange = "getData();", @id = "ilac" })
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+    </div>
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    </div>
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
+    </div>
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart5" style="width:100%;max-width:600px"></canvas>
+    </div>
+    <div class="col-md-4 mb-3">
+        <canvas id="myChart6" style="width:100%;max-width:600px"></canvas>
+    </div>
+</div>
+
+<script>
+
+    function getData() {
+        var deger = document.getElementById("ilac").value;
+        $.ajax({
+            url: '/Home/dataGet',
+            type: 'POST',
+            dataType: 'json',
+            data: { ilac: deger },
+            success: function (gelenDeg) {
+                //Yaş Listesi
+                var xValues = ["1-10", "11-25", "26-40", "45+"];
+                var yValues = [];
+
+                for (var i = 0; i < gelenDeg.YasListesi.length; i++) {
+                    yValues.push(gelenDeg.YasListesi[i]);
+                }
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: "blue",
+                            data: yValues,
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Yaş Grupları"
+                        }
+                    }
+                });
+                //Yaş Listesi
+
+                //  Vücut İndeksi
+                var xValues2 = ["Aşırı Zayıf", "Zayıf", "Orta", "Biraz Kilolu", "Obez"];
+                var yValues2 = [];
+                for (var i = 0; i < gelenDeg.VKitlesiListesi.length; i++) {
+                    yValues2.push(gelenDeg.VKitlesiListesi[i]);
+                }
+                new Chart("myChart2", {
+                    type: "bar",
+                    data: {
+                        labels: xValues2,
+                        datasets: [{
+                            backgroundColor: "blue",
+                            data: yValues2
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Vucüt Kitle İndeksi"
+                        }
+                    }
+                });
+                //  Vücut İndeksi
+
+                // Cinsiyet
+                var xValues3 = ["Kadın", "Erkek"];
+                var yValues3 = [];
+                for (var i = 0; i < gelenDeg.CinsiyetListesi.length; i++) {
+                    yValues3.push(gelenDeg.CinsiyetListesi[i]);
+                }
+                var barColors3 = [
+                    "red",
+                    "blue",
+                ];
+
+                new Chart("myChart3", {
+                    type: "pie",
+                    data: {
+                        labels: xValues3,
+                        datasets: [{
+                            backgroundColor: barColors3,
+                            data: yValues3
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Cinsiyet"
+                        }
+                    }
+                });
+                // Cinsiyet
+
+
+                // Kan Grubu
+                var xValues4 = ["A+", "A-", "B+", "B-", "0+", "0-", "AB+", "AB-"];
+                var yValues4 = [];
+                for (var i = 0; i < gelenDeg.KanListesi.length; i++) {
+                    yValues4.push(gelenDeg.KanListesi[i]);
+                }
+
+                new Chart("myChart4", {
+                    type: "pie",
+                    data: {
+                        labels: xValues4,
+                        datasets: [{
+                            backgroundColor: ["blue", "pink", "black", "yellow", "green", "orange", "red", "lightgreen"],
+                            data: yValues4
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Cinsiyet"
+                        }
+                    }
+                });
+                // Kan Grubu
+
+                // Diğer İlaç List
+                var xValues5 = ["Nimes", "İbucold"];
+                var yValues5 = [];
+                for (var i = 0; i < gelenDeg.DigerIlacList.length; i++) {
+                    yValues5.push(gelenDeg.DigerIlacList[i]);
+                }
+
+                new Chart("myChart5", {
+                    type: "pie",
+                    data: {
+                        labels: xValues5,
+                        datasets: [{
+                            backgroundColor: ["blue", "pink", "black", "yellow", "green"],
+                            data: yValues5
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Diğer İlaç Kullanımı"
+                        }
+                    }
+                });
+                // Diğer İlaç Listesi
+
+                //Alerji Listesi
+                var xValues6 = ["Ateş", "Kaşıntı", "Öksürük"];
+                var yValues6 = [];
+                for (var i = 0; i < gelenDeg.AlerjiList.length; i++) {
+                    yValues6.push(gelenDeg.AlerjiList[i]);
+                }
+
+                new Chart("myChart6", {
+                    type: "pie",
+                    data: {
+                        labels: xValues6,
+                        datasets: [{
+                            backgroundColor: ["blue","red","yellow"],
+                            data: yValues6
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Alerji Durumu"
+                        }
+                    }
+                });
+                //Alerji Listesi
+            },
+        });
+    }
+
+
+</script>

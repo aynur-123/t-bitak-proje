@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="websitesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KISIBILGILERI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADSOYAD" Type="nvarchar" MaxLength="100" />
+          <Property Name="CINSIYET" Type="nvarchar" MaxLength="10" />
+          <Property Name="YAS" Type="int" />
+          <Property Name="KILO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KANGRUBU" Type="nvarchar" MaxLength="10" />
+          <Property Name="ILAC" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIGERILAC" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALERJILERI" Type="nvarchar" MaxLength="50" />
+          <Property Name="YANETKI" Type="nvarchar" MaxLength="50" />
+          <Property Name="BOY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KITLEINDEKSI" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="websitesiModelStoreContainer">
+          <EntitySet Name="KISIBILGILERI" EntityType="Self.KISIBILGILERI" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="websitesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="websitesiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KISIBILGILERIs" EntityType="websitesiModel.KISIBILGILERI" />
+        </EntityContainer>
+        <EntityType Name="KISIBILGILERI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADSOYAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CINSIYET" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YAS" Type="Int32" />
+          <Property Name="KILO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KANGRUBU" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ILAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIGERILAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALERJILERI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YANETKI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BOY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KITLEINDEKSI" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="websitesiModelStoreContainer" CdmEntityContainer="websitesiEntities">
+          <EntitySetMapping Name="KISIBILGILERIs">
+            <EntityTypeMapping TypeName="websitesiModel.KISIBILGILERI">
+              <MappingFragment StoreEntitySet="KISIBILGILERI">
+                <ScalarProperty Name="KITLEINDEKSI" ColumnName="KITLEINDEKSI" />
+                <ScalarProperty Name="BOY" ColumnName="BOY" />
+                <ScalarProperty Name="YANETKI" ColumnName="YANETKI" />
+                <ScalarProperty Name="ALERJILERI" ColumnName="ALERJILERI" />
+                <ScalarProperty Name="DIGERILAC" ColumnName="DIGERILAC" />
+                <ScalarProperty Name="ILAC" ColumnName="ILAC" />
+                <ScalarProperty Name="KANGRUBU" ColumnName="KANGRUBU" />
+                <ScalarProperty Name="KILO" ColumnName="KILO" />
+                <ScalarProperty Name="YAS" ColumnName="YAS" />
+                <ScalarProperty Name="CINSIYET" ColumnName="CINSIYET" />
+                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
